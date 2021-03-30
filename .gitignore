@@ -1,0 +1,5 @@
+node_modules
+mongo_creds.json
+*.log
+keytmp.pem
+package-lock.json

@@ -1,8 +1,18 @@
 const logger = require("./logger")("creds_db")
 // const mongo_creds = require("./mongo_creds.json");
 const { MongoClient } = require("mongodb");
-const url =
-  "mongodb://localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+let url = ""
+const args = process.argv
+if (args[args.length-1] == "server") {
+        console.log("server mode")
+        const m_creds = require("./mongo_creds.json")
+        url =
+        `mongodb://${m_creds.user}:${m_creds.password}@40.90.237.194:27017/school_bot?authSource=school_bot&readPreference=primary&gssapiServiceName=mongodb&appname=MongoDB%20Compass%20Beta&ssl=false`;
+} else {
+        console.log("test mode")
+        url =
+        'mongodb://localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false';
+}
 const dbName = "school_bot";
 
 
